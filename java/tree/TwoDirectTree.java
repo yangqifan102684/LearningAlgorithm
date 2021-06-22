@@ -1,7 +1,9 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 二叉树
@@ -48,6 +50,27 @@ public class TwoDirectTree {
         list.add(node.val);
         add2List(node.left,list);
         add2List(node.right,list);
+    }
+
+    //3.2 先序遍历/前序遍历 (非递归)
+    public List<Integer> preOrderNoRecursive(TreeNode rootNode){
+        List<Integer> result = new LinkedList<>();
+        if (rootNode == null){
+            return result;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(rootNode);
+        while (!stack.empty()){
+            TreeNode node = stack.pop();
+            result.add(node.val);
+            if (node.left != null){
+                stack.push(node.left);
+            }
+            if (node.right != null){
+                stack.push(node.right);
+            }
+        }
+        return result;
     }
 
 }
